@@ -1,6 +1,8 @@
 .cat-imagen {
     width: 100%;
     height: 200px;
+    max-width: 100%;
+    border-radius: 16px 16px 0px 0px;
 }
 
 .row {
@@ -14,10 +16,11 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-bottom: 20px;
+    
+
   }
-  
-  .cat-card img {
-    max-width: 100%;
+  .card {
+    border-radius: 20px;
+    border-color: white;
+    border-width: 0px;
   }
-  

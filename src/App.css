@@ -1,18 +1,33 @@
-.App-header {
+.App{
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 
 }
-
-.App-link {
-  color: #61dafb;
-}
-.presentacion {
-  background-color: #f2f2f2;
+.titulo {
+  padding-top: 20px;
+  font-family: 'Times New Roman', Times, serif;
   text-align: center;
+  color: rgb(0, 0, 0);
+  text-shadow: 0px 5px 5px rgb(65, 42, 29);;
+  font-size: 50px;
+}
+.invitacion {
+  text-align: justify;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: rgba(255, 231, 211, 0.733);
+}
+.lista-Votados {
+  padding-left: 20px;
+  background-color: rgba(255, 231, 211, 0.863);
+
+}
+.botonEliminar {
+  margin: 10px;
+  
+}
+
+.nombreGatoVotado {
+  margin: 10px;
+  font-size: 20px;
 }

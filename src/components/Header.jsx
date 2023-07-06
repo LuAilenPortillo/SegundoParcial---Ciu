@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import '../components/Header.css';
 
 const Header = ({ onSearch }) => {
   const [searchValue, setSearchValue] = useState('');
@@ -13,24 +13,24 @@ const Header = ({ onSearch }) => {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Toggle aria-controls="navbar" />
-      <Navbar.Collapse id="navbar">
-        <Nav className="mr-auto">
-          <Nav.Link href="#home">Contactanos</Nav.Link>
-          <Nav.Link href="https://cataas.com/#/">Conoce más gatos...</Nav.Link>
-        </Nav>
-        <Form onSubmit={handleSearch} className="d-flex">
-          <Form.Control
-            type="text"
-            placeholder="Buscar gato..."
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-          <Button className='buscar' variant="outline-info" type="submit">Buscar</Button>
-        </Form>
-      </Navbar.Collapse>
-    </Navbar>
+    <Fragment>
+      <Navbar expand="lg" className='menu'>
+        <div className='form'>
+          <Form onSubmit={handleSearch} className="d-flex">
+            <Form.Control
+              className='buscar'
+              type="text"
+              placeholder="Buscar finalista..."
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <Button className='boton' variant="outline-secondary" type="submit">Buscar</Button>
+          </Form>
+        </div>
+      </Navbar>
+      <img className='portada' src='Invasión gatuna.png' alt='' width='100%'/>
+      
+    </Fragment>
   );
 };
 

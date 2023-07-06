@@ -1,6 +1,20 @@
-.bg-body-tertiary {
-    width: 120%;
+.menu {
+    background-color: rgb(199, 173, 141);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    
 }
+.boton {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .buscar {
-    padding-left: 5px;
+    margin-left: 5px;
+}
+.form{
+    margin-left: auto;
+      
 }

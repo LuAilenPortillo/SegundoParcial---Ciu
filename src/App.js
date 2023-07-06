@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CatCard from './components/CatCard';
 import Header from './components/Header';
+import '../src/App.css';
+import Button from 'react-bootstrap/Button';
 
 function App() {
   const [gatos, setGatos] = useState([]);
@@ -24,7 +26,7 @@ function App() {
   };
 
   const asignarNombresGatos = () => {
-    const nombres = ["Combo familiar", 'Lechuga', 'El Gemelo Bu', 'Bob Marley', 'Bebecite', 'Jisus', 'Punga', 'Kay', 'Faker','Paco', 'El Gemelo Mo', 'Desagrado', 'Le dicen Romeo', 'Dormilón', 'Michi', 'Po'];
+    const nombres = ["Combo familiar", 'Lechuga', 'El Gemelo Bu', 'Bob Marley', 'Bebecite', 'Jisus', 'Punga', 'Kay', 'Faker','Paco', 'El Gemelo Mo', 'Pato', 'Le dicen Romeo', 'Dormilón', 'Michi', 'Po'];
     setNombresGatos(nombres);
   };
 
@@ -33,23 +35,24 @@ function App() {
   };
 
 
-  const [nombresAdoptados, setNombresAdoptados] = useState([]);
+  const [nombresVotados, setNombresVotados] = useState([]);
 
-  const agregarNombreAdoptado = (nombre) => {
-    setNombresAdoptados([...nombresAdoptados, nombre]);
-    localStorage.setItem('nombresAdoptados', JSON.stringify(nombresAdoptados));
+  const agregarNombreVotado = (nombre) => {
+    setNombresVotados([...nombresVotados, nombre]);
+    localStorage.setItem('nombresVotados', JSON.stringify(nombresVotados));
   };
 
   const eliminarGato = (index) => {
-    const nuevosNombres = [...nombresAdoptados];
+    const nuevosNombres = [...nombresVotados];
     nuevosNombres.splice(index, 1);
-    setNombresAdoptados(nuevosNombres);
+    setNombresVotados(nuevosNombres);
+    localStorage.setItem('nombresVotados', JSON.stringify(nuevosNombres));
   };
 
   useEffect(() => {
-    const nombres = JSON.parse(localStorage.getItem('nombresAdoptados'));
+    const nombres = JSON.parse(localStorage.getItem('nombresVotados'));
     if (nombres) {
-      setNombresAdoptados(nombres);
+      setNombresVotados(nombres);
     }
   }, []);
 
@@ -57,22 +60,10 @@ function App() {
     <Fragment>
       <div className='App'>
         <Header onSearch={(searchValue) => setFiltroNombre(searchValue)} />
-        <div className='presentacion'>
-          <h1>Refugio Huellitas de Amor</h1>
-          <p>En el Refugio Huellitas de Amor, nuestros gatos están buscando un hogar lleno de amor y cuidado. Cada uno de ellos tiene una historia única y está ansioso por encontrar a alguien especial que los adopte y les brinde una vida llena de felicidad.</p>
-          <p>Te invitamos a explorar nuestra página web y conocer a nuestros adorables gatos. Estamos seguros de que encontrarás el compañero perfecto que se ajuste a tu estilo de vida y personalidad. ¡No dudes en contactarnos para obtener más información y comenzar el proceso de adopción!</p>
 
-          <p>Recuerda que adoptar a un gato es una decisión que cambia vidas, tanto para el gato como para ti. ¡Dale a un gato del Refugio Huellitas de Amor un hogar para siempre y experimenta el amor incondicional que te brindarán!</p>
-        </div>
-        <div className="lista-adoptados">
-          <h2>Lista de gatos adoptados:</h2>
-          {nombresAdoptados.map((nombre, index) => (
-            <div key={index} className="nombre-gato">
-              <p>{nombre}</p>
-              <button onClick={() => eliminarGato(index)}>Eliminar</button>
-            </div>
-          ))}
-        </div>
+        <h1 className='titulo'>🐾 Invasión Gatuna: ¡El evento más adorable del año! 🐾</h1>
+        <p className='invitacion'>¡Estás invitado a ser parte de la Invasión Gatuna, donde 16 finalistas están compitiendo para ganar el título del gato más querido! Después de una dura competencia, estos 16 gatos han pasado por el reprechaje entre 3000 postulantes y han demostrado tener un encanto especial.</p>
+        <p className='invitacion'>Ahora es tu turno de votar y ayudar a elegir al ganador. Cada gato finalista tiene su propia belleza y personalidad única, ¡así que tu voto cuenta!</p>
 
         <div className='row row-cols-1 row-cols-md-3'>
           {gatos.map((gato, index) => {
@@ -82,7 +73,7 @@ function App() {
                   <CatCard
                     title={nombresGatos[index]}
                     imageUrl={`https://cataas.com/cat/${gato._id}`}
-                    onAdopt={agregarNombreAdoptado}/>
+                    onVote={agregarNombreVotado}/>
                 </div>
               );
             }
@@ -90,6 +81,15 @@ function App() {
           })}
         </div>
       </div>
+      <div className="lista-Votados">
+          <h2> Lista de gatos Votados:</h2>
+          {nombresVotados.map((nombre, index) => (
+            <div key={index} className="nombre-gato">
+              <span className='nombreGatoVotado'>- {nombre}</span>
+              <Button className='botonEliminar' variant="outline-danger" onClick={() => eliminarGato(index)}>Eliminar Voto</Button>
+            </div>
+          ))}
+        </div>
     </Fragment>
   );
 }

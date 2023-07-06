@@ -2,20 +2,20 @@ import React, { Fragment } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import '../components/CatCard.css';
 
-const CatCard = ({ title, imageUrl, content, onAdopt }) => {
-  const handleAdopt = () => {
-    onAdopt(title); // Llama a la función onAdopt y pasa el nombre del gato
+const CatCard = ({ title, imageUrl, content, onVote }) => {
+  const handleVote = () => {
+    onVote(title);
   };
 
   return (
     <Fragment>
       <div className="cat-card">
-        <Card style={{ width: '14rem' }}>
+        <Card style={{ width: '14rem'}}>
           <Card.Img variant="top" src={imageUrl} alt="Gato" className="cat-imagen" />
-          <Card.Body>
+          <Card.Body className="card">
             <Card.Title>{title}</Card.Title>
             <Card.Text>{content}</Card.Text>
-            <Button variant="info" onClick={handleAdopt}>Adoptar</Button>
+            <Button variant="info" onClick={handleVote}>Votar</Button>
           </Card.Body>
         </Card>
       </div>
